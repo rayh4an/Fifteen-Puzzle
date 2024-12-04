@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fifteen Puzzle</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="name"><h1>The Fifteen Puzzle</h1></div>
+
+      <div class="buttons">
+        <button id="aboutBtn">About</button>
+
+        <button id="howToBtn">How to Play</button>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="container">
+
+        <!-- Choices Section -->
+        <div class="choices">
+          <button class="choices-button" id="imageChoiceBtn">Choose Image</button>
+          <button class="choices-button" id="difficultyBtn">Difficulty</button>
+          <button class="choices-button" id="soundBtn">
+            <img id="sound-icon" src="./icons/music-on.png" />Sound
+          </button>
+          <button class="choices-button" id="start-game-button">Start Game</button>
+          <button class="choices-button disabled" id="reset-game-button">Reset</button>
+        </div>
+
+        <!-- Gameboard Section -->
+        <div class="game">
+          <div class="game-container">
+            <div class="gameGrid fourbyfour" id="game-grid">
+              <div class="square">1</div>
+              <div class="square">2</div>
+              <div class="square">3</div>
+              <div class="square">4</div>
+
+              <div class="square">5</div>
+              <div class="square">6</div>
+              <div class="square">7</div>
+              <div class="square">8</div>
+
+              <div class="square">9</div>
+              <div class="square">10</div>
+              <div class="square">11</div>
+              <div class="square">12</div>
+
+              <div class="square">13</div>
+              <div class="square">14</div>
+              <div class="square">15</div>
+              <div class="square blank"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extra Section -->
+        <div class="extras-container">
+          <div class="slider-container">
+            <label for="shuffle-slider"># of Moves to Shuffle</label>
+            <input id="shuffle-slider" type="range" min="1" max="100" value="50" />
+            <span id="shuffle-value">50</span>
+          </div>
+          <div class="info-container">
+            <div class="moves" id="moves">
+              Total # of Moves: <span id="numMoves">0</span>
+            </div>
+            <div class="timer" id="timer">
+              Timer: <span id="timer">00:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popups -->
+
+    <!-- How to Play Section -->
+    <div id="howToPopup" class="hide">
+      <div class="popup-overlay">
+        <div class="popup-content" id="how-to-content">
+          <div class="popup-header">
+            <h2>How to Play</h2>
+            <button class="close-popup-button" id="closeHowToBtn">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            <h3>
+              Objective: The goal of the Fifteen Puzzle is to arrange the
+              tiles in numerical order, with the empty tile in the
+              bottom-right corner.
+            </h3>
+            <div class="popup-body-content-h">
+              <ol>
+                <li>
+                  Game Setup
+                  <ul>
+                    <li>
+                      The puzzle consists of a grid with numbered tiles and
+                      one empty space.
+                    </li>
+                    <li>
+                      Tiles may display both numbers and parts of an image.
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  Moving Tiles
+                  <ul>
+                    <li>
+                      Click on a tile that is next to an empty space (above,
+                      below, left, or right).
+                    </li>
+                    <li>
+                      The clicked tile will move into the empty space.
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  Valid Moves
+                  <ul>
+                    <li>
+                      Only tiles directly adjacent to the empty space can be
+                      moved.
+                    </li>
+                    <li>
+                      If a tile is not adjacent to the empty space, clicking
+                      it will have no effect.
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  Rearranging Tiles
+                  <ul>
+                    <li>
+                      Continue moving tiles into the empty space to shift
+                      and rearrange them.
+                    </li>
+                    <li>
+                      Work strategically to bring the tiles into numerical
+                      order.
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  Winning the Game
+                  <ul>
+                    <li>
+                      Arrange the tiles in numerical order, left to right,
+                      top to bottom.
+                    </li>
+                    <li>The empty space must end up in the bottom-right</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="aboutPopup" class="hide">
+      <div class="popup-overlay">
+        <div class="popup-content" id="about-content">
+          <div class="popup-header">
+            <h2>About the Fifteen Puzzle</h2>
+            <button class="close-popup-button" id="closeAboutBtn">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            <h3>
+              The Fifteen Puzzle is a classic sliding tile game designed to
+              challenge your logic and strategy skills. The goal of the game
+              is to arrange tiles in numerical order, with the empty space
+              ending in the bottom-right corner. This interactive game
+              blends fun with problem-solving, providing a visually
+              appealing and engaging experience.
+            </h3>
+            <h4>Meet the Team</h4>
+            <div class="popup-body-content-h">
+              <ul>
+                <li>
+                  James Han - Functionality
+                  <ul>
+                    <li>
+                      Ensured seamless integration of features, making the
+                      game intuitive and responsive.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Rayhaan Mohamed - Game logic
+                  <ul>
+                    <li>
+                      Developed core logic behind the game's mechanics,
+                      including tile movement and shuffle algorithm.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Madison Gibbons - Layout and Design
+                  <ul>
+                    <li>
+                      Designed game's layout and visual elements, creating a
+                      clean and user-friendly interface.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Selection -->
+    <div id="choose-image-popup" class="hide">
+      <div class="popup-overlay">
+        <div class="popup-content" id="choose-image-content">
+          <div class="popup-header">
+            <h2>Choose an Image</h2>
+            <button class="close-popup-button" id="closeChooseImageBtn">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            Select an image:
+            <div class="popup-body-content-h">
+              <img
+                class="image-container selected"
+                id="image-1"
+                src="./images/image-1.png"
+              />
+              <img
+                class="image-container"
+                id="image-2"
+                src="./images/image-2.png"
+              />
+              <img
+                class="image-container"
+                id="image-3"
+                src="./images/image-3.png"
+              />
+              <img
+                class="image-container"
+                id="image-4"
+                src="./images/image-4.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Difficulty Section -->
+    <div id="choose-difficulty-popup" class="hide">
+      <div class="popup-overlay">
+        <div class="popup-content" id="choose-difficulty-content">
+          <div class="popup-header">
+            <h2>Choose a Difficulty</h2>
+            <button class="close-popup-button" id="closeDifficultyButton">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            Select a difficulty:
+            <div class="popup-body-content-v">
+              <button class="difficulty-button" id="easy" >Easy (3x3)</button>
+              <button class="difficulty-button selected-diff" id="normal" >Normal (4x4)</button>
+              <button class="difficulty-button" id="hard" >Hard (5x5)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>By Madison Gibbons, James Han, and Rayhaan Mohamed :)</footer>
+    
+    <audio id="background-music" loop>
+      <source src="./music/time_for_adventure.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="valid-sound" src="./sounds/valid.wav"></audio>
+    <audio id="invalid-sound" src="./sounds/invalid.wav"></audio>
+
+    <!-- JavaScript Section -->
+    <script src="game.js"></script>
+  </body>
+</html>
+
+<!-- <div class="gameGrid threebythree">
+        <div class="square">1</div>
+        <div class="square">2</div>
+        <div class="square">3</div>
+
+        <div class="square">4</div>
+        <div class="square">5</div>
+        <div class="square">6</div>
+
+        <div class="square">7</div>
+        <div class="square">8</div>
+        <div class="square blank"></div>
+      </div> -->
+
+<!-- <div class="gameGrid fourbyfour">
+        <div class="square">1</div>
+        <div class="square">2</div>
+        <div class="square">3</div>
+        <div class="square">4</div>
+
+        <div class="square">5</div>
+        <div class="square">6</div>
+        <div class="square">7</div>
+        <div class="square">8</div>
+
+        <div class="square">9</div>
+        <div class="square">10</div>
+        <div class="square">11</div>
+        <div class="square">12</div>
+
+        <div class="square">13</div>
+        <div class="square">14</div>
+        <div class="square">15</div>
+        <div class="square blank"></div>
+    </div>-->
+
+<!-- <div class="gameGrid fivebyfive">
+        <div class="square">1</div>
+        <div class="square">2</div>
+        <div class="square">3</div>
+        <div class="square">4</div>
+        <div class="square">5</div>
+
+        <div class="square">6</div>
+        <div class="square">7</div>
+        <div class="square">8</div>
+        <div class="square">9</div>
+        <div class="square">10</div>
+
+        <div class="square">11</div>
+        <div class="square">12</div>
+        <div class="square">13</div>
+        <div class="square">14</div>
+        <div class="square">15</div>
+
+        <div class="square">16</div>
+        <div class="square">17</div>
+        <div class="square">18</div>
+        <div class="square">19</div>
+        <div class="square">20</div>
+
+        <div class="square">21</div>
+        <div class="square">22</div>
+        <div class="square">23</div>
+        <div class="square">24</div>
+        <div class="square blank"></div>
+      </div> -->
